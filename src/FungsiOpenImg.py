@@ -24,12 +24,10 @@ def mergeImage(b, g, r, a=None):
         result = cv2.merge((b, g, r, a))
     return result
 
-b, g, r, a = openImage('../test/xbox-logo-png-2500.png')
+# b, g, r, a = openImage('../test/xbox-logo-png-2500.png')
 # print(b, g, r, a)
-cv2.imwrite('../test/test3.png', mergeImage(b, g, r, a))
+# cv2.imwrite('../test/test3.png', mergeImage(b, g, r, a))
 # print(b)
 # print(g)
 # print(r)
-# print(eigen.eigenValues(b))
-# print(eigen.eigenValues(g))
-# print(eigen.eigenValues(r))
+
