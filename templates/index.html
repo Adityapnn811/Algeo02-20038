@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Resize Images</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/b0057c069b.js" crossorigin="anonymous"></script>
+
+  </head>
+
+  <style>
+  *{
+    margin: 0 auto;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Poppins", sans-serif;
+    max-width: 1615px;
+  }
+
+  header .title {
+    max-width: 945px;
+    padding: 19px 0;
+    text-align: center;
+    font-size: 55px;
+    border-bottom: 1px solid #000;
+  }
+
+  main {
+    padding: 9px;
+  }
+
+  main .first p,
+  main .first .choice .choice_first, 
+  main .first .choice .choice_second, 
+  main .first .choice .choice_third{
+    margin-top: 25px;
+  }
+
+  main .first p {
+    font-size: 35px;
+  }
+
+  main .first .choice .choice_first .open_file {
+    font-size: 17px;
+  }
+
+  main .first .choice .choice_first .open_file::-webkit-file-upload-button {
+    padding : 9px;
+    background-color : white ;
+    border : 1px solid blue;
+    color : blue;
+    border-radius : 7px;
+    cursor : pointer;
+  }
+
+  main .first .choice .choice_second input {
+    margin-left: 9px;
+    width: 45px;
+    padding: 0 5px;
+    height: 25px;
+    font-size: 16px;
+    text-align: center;
+  }
+
+  main .first .choice .choice_third .go {
+    font-size: 21px;
+    background: rgb(0, 153, 180);
+    border-radius: 0px;
+    padding: 7.5px 10px;
+    color: white;
+    transition: all 550ms ease;
+    cursor: pointer;
+    border: none;
+  }
+
+  main .first .choice .choice_third .go:hover {
+    box-shadow: inset 65px 0 0 0 #33da2d;
+    color: black;
+    font-weight: bold;
+  }
+
+  main .second {
+    margin-top: 25px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  main .second > *{
+    flex: 1 1 35%;
+  }
+
+  main .second .before,
+  main .second .after {
+    text-align: center;
+  }
+
+  main .second .before p,
+  main .second .after p {
+    margin-top: 7px;
+    margin-bottom: 5px;
+    font-size: 25px;
+  }
+
+  main .second .before img:hover,
+  main .second .after img:hover {
+    background-color: white;
+  }
+
+  main .third{
+    padding: 5px;
+    margin-top: 1px;
+    display: flex;
+  }
+
+  main .third .left {
+    margin-left: 50px;
+  }
+
+  main .third .left p {
+    font-size: 19px;
+  }
+
+  main .third .right {
+    margin-right: 50px;
+  }
+
+  main .third .right .btn {
+    background-color: DodgerBlue;
+    border-radius: 15px;
+    border: none;
+    color: white;
+    padding: 12px 30px;
+    cursor: pointer;
+    font-size: 20px;
+  }
+
+  main .third .right .btn:hover {
+    background-color: RoyalBlue;
+  }
+  </style>
+
+  <body>
+    
+    <header>
+      <nav class = "title">
+        <div class= "content">
+          Image Compression
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      
+      <div class = "first">
+        <p> Input Your Image </p>
+
+        <div class = "choice">
+          <div class = "choice_first"> <input type="file" id="upload" accept=".jpg, .jpeg, .png" class="open_file"/> </div>
+          <div class = "choice_second"> Image Compression Rate :<input /> % </div>
+          <div class = "choice_third"> <button onclick="process_image_compression()" class = "go"> Go !</button> </div>
+        </div>
+      </div>
+
+      <div class = "second"> 
+        <div class= "before">
+          <p>Before</p>
+          <img id="input" src="{{ url_for('static', path='/empty-image.png') }}" alt="FASTApi">
+        </div>
+        <div class= "after">
+          <p>After</p>
+          <img id="output" src="{{ url_for('static', path='/empty-image.png') }}" alt="FASTApi">
+        </div>
+      </div>
+
+      <div class = "third"> 
+        <div class= "left">
+          <p>Image pixel difference percentage : </p>
+          <p>Image compression time : </p>
+        </div>
+        <div class= "right">
+          <button class="btn"><i class="fa fa-download"></i> Download</button>
+        </div>
+      </div>
+
+    </main>
+
+    <script src="{{ url_for('static', path='/main.js') }}"></script>
+    <script src="{{ url_for('static', path='/app.js') }}"></script>
+
+  </body>
+</html>
