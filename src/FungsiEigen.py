@@ -4,16 +4,23 @@ import numpy as np
 def eigenValues(matrix):
     # Iterasi pertama lakukan secara manual
     q, r = np.linalg.qr(matrix)
+    S = q
     A = np.matmul(r, q)
-    for i in range(39):
+    for i in range(99):
         q, r = np.linalg.qr(A)
+        S = np.matmul(S, q)
         A = np.matmul(r, q)
-
+    # Coba buletin nilai eigen vectornya
+    baris = np.shape(S)[0]
+    kolom = np.shape(S)[1]
+    for i in range(baris):
+        for j in range(kolom):
+            S[i][j] = round(S[i][j], 5)
     # Isolasi nilai eigen yg berada di diagonal utama
     eigen_val = []
     for i in range(len(A[0])):
         eigen_val.append(round(A[i][i], 5))
-    return eigen_val
+    return eigen_val, S
 
 # matrix = [[49,  49,  49, 49, 49, 49, 49, 49, 49, 49],
 #  [ 49, 118, 118, 118, 118, 118, 118, 118, 118, 49],

@@ -7,14 +7,11 @@ from FungsiEigen import *
 from FungsiMatriks import *
 
 def nilaiUdanS(matriks):
-  b = []
   baris = np.shape(matriks)[0]
   kolom = np.shape(matriks)[1]
   matriks = Matrix(matriks)
   multiply = matriks * matriks.T
-  size = multiply.shape
-  size = size[0]
-  lamda = eigenValues(multiply)
+  lamda, eigenVec = eigenValues(multiply)
   # Buat matriks S dulu
   S = [[0 for j in range(kolom)]for i in range(baris)]
   i = 0
@@ -23,41 +20,14 @@ def nilaiUdanS(matriks):
     S[i][j] = abs(lamda[i])**0.5
     i += 1
     j += 1
-  for i in range(len(lamda)):
-    identitas = eye(size)
-    identitas = lamda[i] * identitas
-    hasil = identitas - multiply
-    matriksHasil = zeros(size, 1)
-    hasil = hasil.col_insert(size, matriksHasil)
-    hasil = GaussElimination(hasil)
-    # Ekstrak eigenvektor
-    eigen_vec = getEigenVector(hasil)
-    b.append(eigen_vec)
-  b = np.squeeze(b)
-  b = np.transpose(b)
-  return b, S
+  return eigenVec, S
 
 def nilaiV(matriks):
-  b = []
   matriks = Matrix(matriks)
   matriks_T = matriks.T
   multiply = matriks_T * matriks
-  size = multiply.shape
-  size = size[0]
-  lamda = eigenValues(multiply)
-  for i in range(len(lamda)):
-    identitas = eye(size)
-    identitas = lamda[i] * identitas
-    hasil = identitas - multiply
-    matriksHasil = zeros(size, 1)
-    hasil = hasil.col_insert(size, matriksHasil)
-    hasil = GaussElimination(hasil)
-    # Ekstrak eigenvektor
-    eigen_vec = getEigenVector(hasil)
-    b.append(eigen_vec)
-  b = np.squeeze(b)
-  b = np.transpose(b)
-  return b
+  lamda, eigenVec = eigenValues(multiply)
+  return eigenVec
 
 def compress(matriks, percentage):
   baris = np.shape(matriks)[0]
@@ -89,5 +59,5 @@ def compress(matriks, percentage):
 
 # matriks =  [[3, 1, 1],
 #            [-1, 3, 1]]
-#
-# print(compress(matriks, 50))
+# #
+# print(nilaiV(matriks))

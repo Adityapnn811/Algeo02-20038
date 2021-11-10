@@ -18,13 +18,13 @@ def openImage(filePath):
         return b, g, r, a
 
 def mergeImage(b, g, r, a=None):
-    if a.all() == None:
-        result = cv2.merge((b, g, r))
-    else:
-        result = cv2.merge((b, g, r, a))
+    # if a == None:
+    result = cv2.merge((b, g, r))
+    # else:
+    #     result = cv2.merge((b, g, r, a))
     return result
 
-# b, g, r, a = openImage('../test/xbox-logo-png-2500.png')
+# b, g, r, a = openImage('../test/Logo Kirana.jpeg')
 # print(b, g, r, a)
 # cv2.imwrite('../test/test3.png', mergeImage(b, g, r, a))
 # print(b)
