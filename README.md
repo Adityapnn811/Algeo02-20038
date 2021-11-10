@@ -1,6 +1,6 @@
 # Front-End Section
 
-Cara menggunakannya melalui main.py. Lalu berikan perintah berupa 
+Cara menggunakannya melalui main.py. Lalu buka terminal dan berikan perintah berupa 
 
 `uvicorn main:app --r`
 
