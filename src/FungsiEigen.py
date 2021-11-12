@@ -6,7 +6,7 @@ def eigenValues(matrix):
     q, r = np.linalg.qr(matrix)
     S = q
     A = np.matmul(r, q)
-    for i in range(99):
+    for i in range(19):
         q, r = np.linalg.qr(A)
         S = np.matmul(S, q)
         A = np.matmul(r, q)

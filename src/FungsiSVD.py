@@ -4,7 +4,6 @@ import numpy as np
 from sympy import *
 import sympy as sp
 from FungsiEigen import *
-from FungsiMatriks import *
 
 def nilaiUdanS(matriks):
   baris = np.shape(matriks)[0]
