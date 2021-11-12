@@ -27,12 +27,11 @@ def MatriksU(A, V, S, EigVal):
   i = 0
   j = 0
   while i < baris and j < kolom:
-    Ui = np.matmul(A, V[i])
-    Ui = np.dot(Ui, 1/math.sqrt(abs(EigVal[i])))
+    Ui = np.matmul(A, V[i]) / math.sqrt(abs(EigVal[i]))
     U.append(Ui)
     i += 1
     j += 1
-  return U
+  return np.transpose(U)
 
 def compress(matriks, percentage):
   baris = np.shape(matriks)[0]
@@ -40,8 +39,8 @@ def compress(matriks, percentage):
   minim = min(baris, kolom)
   k = int(percentage/100 * minim)
   V, S, EigVal = matriksVdanS(matriks)
-  U= MatriksU(matriks, V, S, EigVal)
   VT = np.transpose(V)
+  U= MatriksU(matriks, VT, S, EigVal)
   U_comp = []
   S_comp = [[0 for i in range(k)] for j in range(k)]
   VT_comp = []
@@ -60,6 +59,7 @@ def compress(matriks, percentage):
   # Lakukan perkalian
   mat = np.matmul(U_comp, S_comp)
   mat = np.matmul(mat, VT_comp)
+
   return mat
 
 # matriks = [[49,  49,  49, 49, 49, 49, 49, 49, 49, 49],
@@ -75,11 +75,17 @@ def compress(matriks, percentage):
 #
 # matriks =  [[3, 1, 1],
 #            [-1, 3, 1]]
-# # # #
+
+# matriks =  [[ 6, 88, 53, 15, 61],
+#  [79, 53, 94, 51, 96],
+#  [77, 93, 66, 39, 77],
+#  [54, 25, 75, 44, 38]]
+#
 # V, S, Eig = matriksVdanS(matriks)
-# U = MatriksU(matriks, V, S, Eig)
+# VT = np.transpose(V)
+# U = MatriksU(matriks, VT, S, Eig)
 # mat = np.matmul(U, S)
-# mat = np.matmul(mat, np.transpose(V))
+# mat = np.matmul(mat, VT)
 # print(U)
 # print(S)
 # print(V)

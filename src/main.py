@@ -10,6 +10,13 @@ def compress_img(filepath, percentage):
     #     a = compress(a, percentage)
     # elif a != None:
     #     a = compress(a, percentage)
-    cv2.imwrite('../test/test3.jpeg', mergeImage(b, g, r))
+    dot = False
+    extension = ""
+    for i in range(3, len(filepath)):
+        if filepath[i] == '.':
+            dot = True
+        if dot:
+            extension += filepath[i]
+    cv2.imwrite('../test/hasil' + extension, mergeImage(b, g, r))
 
-compress_img('../test/Logo Kirana.jpeg', 100)
+compress_img('../test/test4.jpg', 50)

@@ -16,7 +16,7 @@ def eigenValues(matrix):
     # kolom = np.shape(S)[1]
     # for i in range(baris):
     #     for j in range(kolom):
-    #         S[i][j] = round(S[i][j], 5)
+    #         S[i][j] = round(S[i][j], 3)
     # Isolasi nilai eigen yg berada di diagonal utama
     eigen_val = []
     for i in range(len(A[0])):

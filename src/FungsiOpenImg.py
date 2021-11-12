@@ -5,16 +5,16 @@ import FungsiEigen as eigen
 def openImage(filePath):
     img = cv2.imread(filePath, cv2.IMREAD_UNCHANGED)
     if (np.shape(img)[2] == 3):
-        b = img[:, :, 0]
-        g = img[:, :, 1]
-        r = img[:, :, 2]
+        b = np.array(img[:, :, 0]).astype(float)
+        g = np.array(img[:, :, 1]).astype(float)
+        r = np.array(img[:, :, 2]).astype(float)
         a = None
         return b, g, r, a
     else:
-        b = img[:, :, 0]
-        g = img[:, :, 1]
-        r = img[:, :, 2]
-        a = img[:, :, 3]
+        b = np.array(img[:, :, 0]).astype(float)
+        g = np.array(img[:, :, 1]).astype(float)
+        r = np.array(img[:, :, 2]).astype(float)
+        a = np.array(img[:, :, 3]).astype(float)
         return b, g, r, a
 
 def mergeImage(b, g, r, a=None):
