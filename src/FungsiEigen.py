@@ -1,4 +1,5 @@
 import numpy as np
+from decimal import *
 
 # Fungsi yang menentukan nilai eigen dengan qr algorithm
 def eigenValues(matrix):
@@ -6,20 +7,20 @@ def eigenValues(matrix):
     q, r = np.linalg.qr(matrix)
     S = q
     A = np.matmul(r, q)
-    for i in range(19):
+    for i in range(50):
         q, r = np.linalg.qr(A)
         S = np.matmul(S, q)
         A = np.matmul(r, q)
     # Coba buletin nilai eigen vectornya
-    baris = np.shape(S)[0]
-    kolom = np.shape(S)[1]
-    for i in range(baris):
-        for j in range(kolom):
-            S[i][j] = round(S[i][j], 5)
+    # baris = np.shape(S)[0]
+    # kolom = np.shape(S)[1]
+    # for i in range(baris):
+    #     for j in range(kolom):
+    #         S[i][j] = round(S[i][j], 5)
     # Isolasi nilai eigen yg berada di diagonal utama
     eigen_val = []
     for i in range(len(A[0])):
-        eigen_val.append(round(A[i][i], 5))
+        eigen_val.append(A[i][i])
     return eigen_val, S
 
 # matrix = [[49,  49,  49, 49, 49, 49, 49, 49, 49, 49],
@@ -38,5 +39,4 @@ def eigenValues(matrix):
 # matrix = [[11, 1],
 #           [1, 11]]
 
-# print(qrFactor(matrix))
 # print(eigenValues(matrix))

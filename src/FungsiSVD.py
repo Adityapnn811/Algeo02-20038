@@ -1,40 +1,47 @@
 import math
 from numpy import linalg
 import numpy as np
-from sympy import *
-import sympy as sp
 from FungsiEigen import *
 
-def nilaiUdanS(matriks):
-  baris = np.shape(matriks)[0]
-  kolom = np.shape(matriks)[1]
-  matriks = Matrix(matriks)
-  multiply = matriks * matriks.T
-  lamda, eigenVec = eigenValues(multiply)
-  # Buat matriks S dulu
+def matriksVdanS(A):
+  baris = np.shape(A)[0]
+  kolom = np.shape(A)[1]
+  AT = np.transpose(A)
+  ATA = np.matmul(AT, A)
+  EigVal, V = eigenValues(ATA)
   S = [[0 for j in range(kolom)]for i in range(baris)]
   i = 0
   j = 0
   while i < baris and j < kolom:
-    S[i][j] = abs(lamda[i])**0.5
+    S[i][i] = math.sqrt(abs(EigVal[i]))
     i += 1
     j += 1
-  return eigenVec, S
+  return V, S, EigVal
 
-def nilaiV(matriks):
-  matriks = Matrix(matriks)
-  matriks_T = matriks.T
-  multiply = matriks_T * matriks
-  lamda, eigenVec = eigenValues(multiply)
-  return eigenVec
+def MatriksU(A, V, S, EigVal):
+  baris = np.shape(S)[0]
+  kolom = np.shape(S)[1]
+  # Kita iterasi sampe nilai singular dalam matriks S habis
+  # membuat matriks U berdasarkan rumus U[i] = A*V[i]/S[i]
+  U = []
+  i = 0
+  j = 0
+  while i < baris and j < kolom:
+    Ui = np.matmul(A, V[i])
+    Ui = np.dot(Ui, 1/math.sqrt(abs(EigVal[i])))
+    U.append(Ui)
+    i += 1
+    j += 1
+  return U
 
 def compress(matriks, percentage):
   baris = np.shape(matriks)[0]
   kolom = np.shape(matriks)[1]
   minim = min(baris, kolom)
   k = int(percentage/100 * minim)
-  U, S = nilaiUdanS(matriks)
-  VT = np.transpose(nilaiV(matriks))
+  V, S, EigVal = matriksVdanS(matriks)
+  U= MatriksU(matriks, V, S, EigVal)
+  VT = np.transpose(V)
   U_comp = []
   S_comp = [[0 for i in range(k)] for j in range(k)]
   VT_comp = []
@@ -55,8 +62,25 @@ def compress(matriks, percentage):
   mat = np.matmul(mat, VT_comp)
   return mat
 
-
+# matriks = [[49,  49,  49, 49, 49, 49, 49, 49, 49, 49],
+#  [ 49, 118, 118, 118, 118, 118, 118, 118, 118, 49],
+#  [ 49, 118, 49, 49, 49, 49, 49, 49, 118, 49],
+#  [ 49, 118, 49, 118, 118, 118, 118, 49, 118, 49],
+#  [ 49, 118, 49, 118, 49, 49, 118, 49, 118, 49],
+#  [ 49, 118, 49, 118, 49, 49, 118, 49, 118, 49],
+#  [ 49, 118, 49, 118, 118, 118, 118, 49, 118, 49],
+#  [ 49, 118, 49, 49, 49, 49, 49, 49, 118, 49],
+#  [ 49, 118,118, 118, 118, 118, 118, 118, 118, 49],
+#  [ 49, 49, 49, 49, 49, 49, 49, 49, 49, 49]]
+#
 # matriks =  [[3, 1, 1],
 #            [-1, 3, 1]]
-# #
-# print(nilaiV(matriks))
+# # # #
+# V, S, Eig = matriksVdanS(matriks)
+# U = MatriksU(matriks, V, S, Eig)
+# mat = np.matmul(U, S)
+# mat = np.matmul(mat, np.transpose(V))
+# print(U)
+# print(S)
+# print(V)
+# print(mat)
