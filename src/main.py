@@ -1,7 +1,9 @@
 from FungsiSVD import *
 from FungsiOpenImg import *
+import time
 
 def compress_img(filepath, percentage):
+    start_time = time.time()
     b, g, r, a = openImage(filepath)
     b = compress(b, percentage)
     g = compress(g, percentage)
@@ -18,5 +20,6 @@ def compress_img(filepath, percentage):
         if dot:
             extension += filepath[i]
     cv2.imwrite('../test/hasil' + extension, mergeImage(b, g, r))
+    print("--- %s seconds ---" % (time.time() - start_time))
 
-compress_img('../test/test4.jpg', 50)
+compress_img('../test/test5.jpg', 50)
