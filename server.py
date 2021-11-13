@@ -23,7 +23,7 @@ def root(request : Request):
 def convert_image(request : Request, image: UploadFile = File(...)):
     temp_file = _save_file_to_disk(image, path="temp", save_as="temp")
     filename, waktu = main.start(temp_file, 50)
-    return ({"filenamebefore": image.filename, "filename": filename, "waktu": waktu})
+    return ({"filename": filename, "waktu": waktu})
 
 def _save_file_to_disk(uploaded_file, path=".", save_as="default"):
     extension = os.path.splitext(uploaded_file.filename)[-1]
@@ -31,7 +31,3 @@ def _save_file_to_disk(uploaded_file, path=".", save_as="default"):
     with open(temp_file, "wb") as buffer:
         shutil.copyfileobj(uploaded_file.file, buffer)
     return temp_file
-
-@app.post("/image")
-def image(image: UploadFile = File(...)):
-    return (image, {"filename": image.filename})
