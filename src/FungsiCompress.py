@@ -17,8 +17,9 @@ def Compress_png(filepath, percentage, extension):
   img_mat[:, :, 1] = g
   img_mat[:, :, 2] = b
   img = Image.fromarray(img_mat.astype('uint8'), "RGBA")
-  img.save('../test/hasil' + extension)
-  print("--- %s seconds ---" % (time.time() - start_time))
+  nama_file = "hasil" + extension
+  total_waktu = time.time() - start_time
+  return img, nama_file, total_waktu
 
 def Compress_img(filepath, percentage, extension):
   start_time = time.time()
@@ -34,8 +35,9 @@ def Compress_img(filepath, percentage, extension):
   img_mat[:, :, 1] = g
   img_mat[:, :, 2] = b
   img = Image.fromarray(img_mat.astype('uint8'), "RGB")
-  img.save('../test/hasil' + extension)
-  print("--- %s seconds ---" % (time.time() - start_time))
+  nama_file = "hasil" + extension
+  total_waktu = time.time() - start_time
+  return img, nama_file, total_waktu
 
 # Compress_png("../test/xbox-logo-black-png-7.png", 50)
 # Compress_img("../test/Logo Kirana.jpeg", 50)

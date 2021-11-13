@@ -10,8 +10,11 @@ def main(filepath, percentage):
         if dot:
             extension += filepath[i]
     if extension.lower() == ".png":
-        Compress_png(filepath, percentage, extension)
+        return Compress_png(filepath, percentage, extension)
     else:
-        Compress_img(filepath, percentage, extension)
+        return Compress_img(filepath, percentage, extension)
 
-main("../test/test4.jpg", 50)
+# DRIVER
+# img, nama_file, waktu = main("../test/test4.jpg", 50)
+# img.save(nama_file)
+# print(waktu, "detik")
