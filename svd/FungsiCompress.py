@@ -35,17 +35,17 @@ def Compress_img(filepath, percentage, extension):
   kolom = np.shape(img_mat)[1]
   rank = int((percentage/100) * min(baris, kolom))
   pixel_diff = ((baris*rank) + rank + (rank*kolom))/(baris*kolom) * 100
-  # r = np.array(img_mat[:, :, 0]).astype(float)
-  # g = np.array(img_mat[:, :, 1]).astype(float)
-  # b = np.array(img_mat[:, :, 2]).astype(float)
-  # r = compress(r, percentage)
-  # g = compress(g, percentage)
-  # b = compress(b, percentage)
-  # img_mat[:, :, 0] = r
-  # img_mat[:, :, 1] = g
-  # img_mat[:, :, 2] = b
-  # img = Image.fromarray(img_mat.astype('uint8'), "RGB")
-  # img.save('static/image/hasil-Extension' + extension)
+  r = np.array(img_mat[:, :, 0]).astype(float)
+  g = np.array(img_mat[:, :, 1]).astype(float)
+  b = np.array(img_mat[:, :, 2]).astype(float)
+  r = compress(r, percentage)
+  g = compress(g, percentage)
+  b = compress(b, percentage)
+  img_mat[:, :, 0] = r
+  img_mat[:, :, 1] = g
+  img_mat[:, :, 2] = b
+  img = Image.fromarray(img_mat.astype('uint8'), "RGB")
+  img.save('static/image/hasil-Extension' + extension)
   nama_file = "hasil-Extension" + extension
   total_waktu = time.time() - start_time
   string_total_waktu = str(total_waktu)
