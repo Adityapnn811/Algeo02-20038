@@ -32,7 +32,7 @@ function process_image_compression() {
     success: function(data) {
       getConvertedFiles(data.filename, data.waktu);
       showUpBefore(file);
-      showUpTime(x);
+      showUpTime(data.pixel);
     }
   });
 
@@ -53,7 +53,7 @@ function process_image_compression() {
     };
   }
   
-  function showUpTime(x){
-    document.getElementById("outputPercentage").innerHTML = x;
+  function showUpTime(pixel){
+    document.getElementById("outputPercentage").innerHTML = pixel;
   }
 }

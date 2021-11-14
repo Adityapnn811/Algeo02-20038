@@ -7,7 +7,7 @@ import os
 import uuid
 import json
 import sys
-sys.path.append('src')
+sys.path.append('svd')
 import main
 
 app = FastAPI()
@@ -22,8 +22,8 @@ def root(request : Request):
 @app.post("/api/v1/convert_image")
 def convert_image(request : Request, image: UploadFile = File(...), inputPercentage: str = Form(...)):
     temp_file = _save_file_to_disk(image, path="temp", save_as="temp")
-    filename, waktu = main.start(temp_file, inputPercentage)
-    return ({"filename": filename, "waktu": waktu})
+    filename, waktu, pixel_diff = main.start(temp_file, inputPercentage)
+    return ({"filename": filename, "waktu": waktu, "pixel": pixel_diff})
 
 def _save_file_to_disk(uploaded_file, path=".", save_as="default"):
     extension = os.path.splitext(uploaded_file.filename)[-1]
