@@ -1,1 +1,0 @@
-# Folder test untuk menyimpan gambar uji

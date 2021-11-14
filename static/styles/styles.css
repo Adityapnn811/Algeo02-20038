@@ -1,0 +1,128 @@
+* {
+  margin: 0 auto;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  max-width: 1615px;
+}
+
+header .title {
+  max-width: 945px;
+  padding: 19px 0;
+  text-align: center;
+  font-size: 55px;
+  border-bottom: 1px solid #000;
+}
+
+main {
+  padding: 9px;
+}
+
+main .first p,
+main .first .choice .choice_first, 
+main .first .choice .choice_second, 
+main .first .choice .choice_third{
+  margin-top: 25px;
+}
+
+main .first p {
+  font-size: 35px;
+}
+
+main .first .choice .choice_first .open_file {
+  font-size: 17px;
+}
+
+main .first .choice .choice_first .open_file::-webkit-file-upload-button {
+  padding : 9px;
+  background-color : white ;
+  border : 1px solid blue;
+  color : blue;
+  border-radius : 7px;
+  cursor : pointer;
+}
+
+main .first .choice .choice_second input {
+  margin-left: 9px;
+  width: 45px;
+  padding: 0 5px;
+  height: 25px;
+  font-size: 16px;
+  text-align: center;
+}
+
+main .first .choice .choice_third .go {
+  font-size: 21px;
+  background: rgb(0, 153, 180);
+  border-radius: 0px;
+  padding: 7.5px 10px;
+  color: white;
+  transition: all 550ms ease;
+  cursor: pointer;
+  border: none;
+}
+
+main .first .choice .choice_third .go:hover {
+  box-shadow: inset 65px 0 0 0 #33da2d;
+  color: black;
+  font-weight: bold;
+}
+
+main .second {
+  margin-top: 25px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+main .second > *{
+  flex: 1 1 35%;
+}
+
+main .second .before,
+main .second .after {
+  text-align: center;
+}
+
+main .second .before p,
+main .second .after p {
+  margin-top: 7px;
+  margin-bottom: 5px;
+  font-size: 25px;
+}
+
+main .second .before img:hover,
+main .second .after img:hover {
+  background-color: white;
+}
+
+main .third{
+  padding: 5px;
+  margin-top: 1px;
+  display: flex;
+}
+
+main .third .left {
+  margin-left: 50px;
+}
+
+main .third .left p {
+  font-size: 19px;
+}
+
+main .third .right {
+  margin-right: 50px;
+}
+
+main .third .right .btn {
+  background-color: DodgerBlue;
+  border-radius: 15px;
+  border: none;
+  color: white;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 20px;
+}
+
+main .third .right .btn:hover {
+  background-color: RoyalBlue;
+}
