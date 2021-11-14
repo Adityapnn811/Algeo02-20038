@@ -20,6 +20,7 @@ function process_image_compression() {
   var formData = new FormData();
   var endpoint = '/api/v1/convert_image';
   formData.append('image', files[0]);
+  formData.append('inputPercentage', x);
 
   $.ajax({
     type: 'POST',

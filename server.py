@@ -20,9 +20,9 @@ def root(request : Request):
     return templates.TemplateResponse("index.html",{"request" : request})
 
 @app.post("/api/v1/convert_image")
-def convert_image(request : Request, image: UploadFile = File(...)):
+def convert_image(request : Request, image: UploadFile = File(...), inputPercentage: str = Form(...)):
     temp_file = _save_file_to_disk(image, path="temp", save_as="temp")
-    filename, waktu = main.start(temp_file, 50)
+    filename, waktu = main.start(temp_file, inputPercentage)
     return ({"filename": filename, "waktu": waktu})
 
 def _save_file_to_disk(uploaded_file, path=".", save_as="default"):
