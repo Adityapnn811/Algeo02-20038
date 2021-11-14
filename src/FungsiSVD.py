@@ -34,7 +34,8 @@ def MatriksU(A, V, S, EigVal):
 def compress(matriks, percentage):
   baris = np.shape(matriks)[0]
   kolom = np.shape(matriks)[1]
-  k = int((percentage/100) * (baris*kolom/(baris + 1 + kolom)))
+  minim = min(baris, kolom)
+  k = int((percentage / 100) * minim)
   V, S, EigVal = matriksVdanS(matriks)
   VT = np.transpose(V)
   U= MatriksU(matriks, VT, S, EigVal)
