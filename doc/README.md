@@ -1,2 +1,2 @@
-# FOLDER SRC
-<p>Folder ini berisi <em>source code</em> dari program dan berisi back-end serta front-end.</p>
+# FOLDER DOC
+<p>Folder ini berisi laporan dari tugas besar 2 mata kuliah aljabar linier dan geometri.</p>
